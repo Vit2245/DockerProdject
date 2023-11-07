@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Генератор случайных чисел</title>
+</head>
+<body>
+    <h1>Генератор случайных чисел</h1>
+    <button id="generate-button">Сгенерировать случайное число</button>
+    <p id="random-number"></p>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const generateButton = document.getElementById('generate-button');
+            const randomNumberDisplay = document.getElementById('random-number');
+
+            generateButton.addEventListener('click', function() {
+                fetch('/generate_random_number', {
+                    method: 'POST'
+                })
+                .then(response => response.text())
+                .then(data => {
+                    randomNumberDisplay.innerText = `Случайное число: ${data}`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>
